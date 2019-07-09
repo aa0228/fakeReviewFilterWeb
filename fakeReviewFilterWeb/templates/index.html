@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8"/>
+        <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}" defer="defer"></script>
+        <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}" defer="defer"></script>
+        <script src="{{ url_for('static', filename='js/pagination.js') }}" defer="defer"></script>
+        <script src="{{ url_for('static' , filename='highcharts/code/highcharts.js') }}" defer="defer"></script>
+        <script src="{{ url_for('static', filename='js/page.js') }}" defer="defer"></script>
+        <script src="{{ url_for('static', filename='js/chartData.js') }}" defer="defer"></script>
+        <script src="{{ url_for('static', filename='js/cover.js') }}" defer="defer"></script>
+        <script src="{{ url_for('static', filename='js/result.js') }}" defer="defer"></script>
+
+        <link href="{{ url_for('static', filename='css/pagination.css') }}" rel="stylesheet"/>
+        <link href="{{ url_for('static', filename='css/cover.css') }}" rel="stylesheet"/>
+        <link href="{{ url_for('static', filename='css/result.css') }}" rel="stylesheet"/>
+    </head>
+
+    <body>
+    	<div class="header">
+        </div>
+
+        <div id="cover">
+            <div class="inputDiv">
+                <form>
+                	<select class="inline select" name="productTypeName" id="productTypeNameInput">
+                        {% for productType in productTypes %}
+                        <option value="{{ productType.id }}">{{ productType.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="text" class="lineInput inline" name="productLink" id="productInput"/>
+                    <input type="submit" name="sumbitButton" id="submitButton" class="large green button" value="提交"/>
+                </form>
+            </div>
+        </div>
+
+        <div id="result" class="container">
+        <div class="header_in">
+        	<img src="{{ url_for('static', filename="img/logo.png") }}" />
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虚假评论检测系统&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="searchButton"><img src="{{ url_for('static', filename='img/search.png') }}"></a>
+        </div>
+            
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <h5 class="text-center">情况分析</h5>
+                    </div>
+                    <div class="row" id="fakeReviewRateChart">
+                    </div>
+                    <div class="row" id="scoreSimInfoChart">
+                    </div>
+                    <div class="row" id="textSimInfoChart">
+                    </div>
+                    <div class="row" id="emotionSimInfoChart">
+                    </div>
+                </div>
+
+                <div class="col-lg-1">
+                </div>
+                	<div class="col-lg-8">
+                		<b>商品名：</b><a id="productName">哇哈哈</a><br/><br/>
+                        总品论数目：<span id="totalReviewCount">100</span><br/>
+                		虚假评论数目：<span id="fakeReviewCount">40</span><br/>
+                		购买建议：<span id ="advice">this si worth to buy  kjsdfkjdskf ksjf sk fksj fsk fksj fsj fksjf sk fksj fksjf ksj fskfj ksjfksj ks dfk ksd f</span>
+                	</div>
+                	<div class="col-lg-1">
+                	</div>
+
+               <div class="col-lg-8">
+                    <div class="row">
+                        <h4 class="text-center">过滤后的评论</h4>
+                    </div>
+
+                    <div class="row">
+                        <table class="table">
+                            <tbody id="reviews">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div id="pagination" class="center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <a href="http://url.cn/49T3YUg#flyticket"><img src="{{ url_for('static', filename='img/footer.png') }}" /></a>
+        </div>
+    </body>
+</html>
